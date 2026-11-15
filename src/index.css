@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+:root {
+  --gf-teal: #3aafa9;
+  --gf-ink: #17252a;
+  --gf-muted: #6b7280;
+  --gf-bg: #f3f7f7;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--gf-bg);
+  color: var(--gf-ink);
+}
