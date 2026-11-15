@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from "./auth/AuthContext";
 import AppShell from "./components/AppShell";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
+import ProfilePage from "./pages/ProfilePage";
 import ClientsPage from "./pages/ClientsPage";
 import EarningsPage from "./pages/EarningsPage";
 import AttendancePage from "./pages/AttendancePage";
@@ -31,6 +32,7 @@ export default function App() {
             }
           >
             <Route index element={<HomePage />} />
+            <Route path="profile" element={<ProfilePage />} />
             <Route path="clients" element={<ClientsPage />} />
             <Route path="earnings" element={<EarningsPage />} />
             <Route path="attendance" element={<AttendancePage />} />

@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 import { fetchHome } from "../api/portal.api";
+import { useAuth } from "../auth/AuthContext";
+import ProfileCard from "../components/ProfileCard";
 
 function money(n) {
   return `Rs ${Number(n || 0).toLocaleString()}`;
 }
 
 export default function HomePage() {
+  const { setTrainerProfile } = useAuth();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -16,7 +20,9 @@ export default function HomePage() {
     (async () => {
       try {
         const res = await fetchHome();
-        if (alive) setData(res);
+        if (!alive) return;
+        setData(res);
+        if (res?.trainer) setTrainerProfile(res.trainer);
       } catch (err) {
         toast.error(err?.response?.data?.message || "Failed to load home");
       } finally {
@@ -26,7 +32,7 @@ export default function HomePage() {
     return () => {
       alive = false;
     };
-  }, []);
+  }, [setTrainerProfile]);
 
   if (loading) {
     return <p className="text-sm text-gray-500 py-8 text-center">Loading…</p>;
@@ -35,9 +41,20 @@ export default function HomePage() {
   if (!data) return null;
 
   const sessions = data.todayAttendance?.sessions || [];
+  const trainer = data.trainer;
 
   return (
     <div className="space-y-3 sm:space-y-4">
+      <ProfileCard trainer={trainer} compact />
+      <div className="text-center">
+        <Link
+          to="/profile"
+          className="inline-block text-sm font-medium text-[#3aafa9] hover:underline"
+        >
+          View full profile
+        </Link>
+      </div>
+
       <motion.section
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}

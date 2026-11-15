@@ -1,5 +1,6 @@
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import { FaUserCircle } from "react-icons/fa";
 import {
   CalendarDays,
   Home,
@@ -7,6 +8,7 @@ import {
   Users,
   Wallet,
   Clock3,
+  UserRound,
 } from "lucide-react";
 import { useAuth } from "../auth/AuthContext";
 
@@ -20,16 +22,29 @@ export default function AppShell() {
   const location = useLocation();
 
   return (
-    <div className="min-h-dvh pb-[calc(4.5rem+env(safe-area-inset-bottom))] bg-[#f5f7f8]">
+    <div className="min-h-dvh pb-[calc(4.75rem+env(safe-area-inset-bottom))] bg-[#f5f7f8]">
       <header className="sticky top-0 z-20 border-b border-black/5 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
         <div className="mx-auto flex max-w-lg items-center justify-between gap-3 px-4 py-3 safe-pt">
-          <div className="min-w-0">
-            <p className="text-xs text-gray-500 truncate">
-              {trainer?.gym?.name || "GymFinity"}
-            </p>
-            <h1 className="text-base font-semibold text-[#1c323a] truncate">
-              {trainer?.name || "Trainer"}
-            </h1>
+          <div className="flex items-center gap-2.5 min-w-0">
+            {trainer?.imageUrl ? (
+              <img
+                src={trainer.imageUrl}
+                alt={trainer.name}
+                className="w-9 h-9 rounded-full object-cover border border-[#3aafa9]/40 shrink-0"
+              />
+            ) : (
+              <div className="w-9 h-9 rounded-full bg-[#3aafa9] text-white flex items-center justify-center shrink-0 text-lg">
+                <FaUserCircle />
+              </div>
+            )}
+            <div className="min-w-0">
+              <p className="text-xs text-gray-500 truncate">
+                {trainer?.gym?.name || "GymFinity"}
+              </p>
+              <h1 className="text-base font-semibold text-[#1c323a] truncate">
+                {trainer?.name || "Trainer"}
+              </h1>
+            </div>
           </div>
           <motion.button
             type="button"
@@ -58,18 +73,32 @@ export default function AppShell() {
       </main>
 
       <nav className="fixed bottom-0 left-0 right-0 z-20 border-t border-black/5 bg-white/95 backdrop-blur pb-[env(safe-area-inset-bottom)]">
-        <div className="mx-auto grid max-w-lg grid-cols-5">
+        <div className="mx-auto grid max-w-lg grid-cols-6">
           <NavLink to="/" end className={linkClass}>
             {({ isActive }) => (
               <>
                 {isActive && (
                   <motion.span
                     layoutId="nav-pill"
-                    className="absolute inset-x-2 top-0 h-0.5 rounded-full bg-[#3aafa9]"
+                    className="absolute inset-x-1.5 top-0 h-0.5 rounded-full bg-[#3aafa9]"
                   />
                 )}
-                <Home size={18} />
+                <Home size={17} />
                 Home
+              </>
+            )}
+          </NavLink>
+          <NavLink to="/profile" className={linkClass}>
+            {({ isActive }) => (
+              <>
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-pill"
+                    className="absolute inset-x-1.5 top-0 h-0.5 rounded-full bg-[#3aafa9]"
+                  />
+                )}
+                <UserRound size={17} />
+                Profile
               </>
             )}
           </NavLink>
@@ -79,10 +108,10 @@ export default function AppShell() {
                 {isActive && (
                   <motion.span
                     layoutId="nav-pill"
-                    className="absolute inset-x-2 top-0 h-0.5 rounded-full bg-[#3aafa9]"
+                    className="absolute inset-x-1.5 top-0 h-0.5 rounded-full bg-[#3aafa9]"
                   />
                 )}
-                <Users size={18} />
+                <Users size={17} />
                 Clients
               </>
             )}
@@ -93,10 +122,10 @@ export default function AppShell() {
                 {isActive && (
                   <motion.span
                     layoutId="nav-pill"
-                    className="absolute inset-x-2 top-0 h-0.5 rounded-full bg-[#3aafa9]"
+                    className="absolute inset-x-1.5 top-0 h-0.5 rounded-full bg-[#3aafa9]"
                   />
                 )}
-                <Wallet size={18} />
+                <Wallet size={17} />
                 Pay
               </>
             )}
@@ -107,10 +136,10 @@ export default function AppShell() {
                 {isActive && (
                   <motion.span
                     layoutId="nav-pill"
-                    className="absolute inset-x-2 top-0 h-0.5 rounded-full bg-[#3aafa9]"
+                    className="absolute inset-x-1.5 top-0 h-0.5 rounded-full bg-[#3aafa9]"
                   />
                 )}
-                <Clock3 size={18} />
+                <Clock3 size={17} />
                 Clock
               </>
             )}
@@ -121,11 +150,11 @@ export default function AppShell() {
                 {isActive && (
                   <motion.span
                     layoutId="nav-pill"
-                    className="absolute inset-x-2 top-0 h-0.5 rounded-full bg-[#3aafa9]"
+                    className="absolute inset-x-1.5 top-0 h-0.5 rounded-full bg-[#3aafa9]"
                   />
                 )}
-                <CalendarDays size={18} />
-                Schedule
+                <CalendarDays size={17} />
+                Plan
               </>
             )}
           </NavLink>
