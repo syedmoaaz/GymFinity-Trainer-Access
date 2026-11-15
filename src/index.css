@@ -2,9 +2,9 @@
 
 :root {
   --gf-teal: #3aafa9;
-  --gf-ink: #17252a;
-  --gf-muted: #6b7280;
-  --gf-bg: #f3f7f7;
+  --gf-teal-deep: #2d8a7d;
+  --gf-ink: #1c323a;
+  --gf-bg: #f5f7f8;
 }
 
 html,
@@ -18,4 +18,26 @@ body {
   font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
   background: var(--gf-bg);
   color: var(--gf-ink);
+  -webkit-tap-highlight-color: transparent;
+  text-size-adjust: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input,
+button,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.safe-pt {
+  padding-top: max(0.25rem, env(safe-area-inset-top));
 }
