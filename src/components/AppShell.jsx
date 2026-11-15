@@ -11,6 +11,7 @@ import {
   UserRound,
 } from "lucide-react";
 import { useAuth } from "../auth/AuthContext";
+import ThemeToggle from "./ThemeToggle";
 
 const linkClass = ({ isActive }) =>
   `relative flex flex-col items-center gap-1 px-1 py-2.5 text-[11px] transition-colors ${
@@ -46,15 +47,18 @@ export default function AppShell() {
               </h1>
             </div>
           </div>
-          <motion.button
-            type="button"
-            whileTap={{ scale: 0.96 }}
-            onClick={logout}
-            className="inline-flex shrink-0 items-center gap-1 rounded-lg border border-gray-200 bg-white px-2.5 py-1.5 text-xs text-gray-600 active:bg-gray-50"
-          >
-            <LogOut size={14} />
-            Logout
-          </motion.button>
+          <div className="flex items-center gap-2 shrink-0">
+            <ThemeToggle />
+            <motion.button
+              type="button"
+              whileTap={{ scale: 0.96 }}
+              onClick={logout}
+              className="inline-flex items-center gap-1 rounded-lg border border-gray-200 bg-white px-2.5 py-1.5 text-xs text-gray-600 active:bg-gray-50"
+            >
+              <LogOut size={14} />
+              Logout
+            </motion.button>
+          </div>
         </div>
       </header>
 

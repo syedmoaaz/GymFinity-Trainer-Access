@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaUser, FaEye, FaEyeSlash } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { useAuth } from "../auth/AuthContext";
+import ThemeToggle from "../components/ThemeToggle";
 import logo from "../assets/logo.png";
 
 export default function LoginPage() {
@@ -38,6 +39,9 @@ export default function LoginPage() {
 
   return (
     <div className="flex flex-col md:flex-row w-full min-h-dvh justify-center items-center gap-8 md:gap-10 bg-[#f5f7f8] relative px-4 py-8 sm:p-6 overflow-x-hidden">
+      <div className="absolute top-4 right-4 z-10">
+        <ThemeToggle />
+      </div>
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}

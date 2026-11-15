@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --gf-teal: #3aafa9;
   --gf-teal-deep: #2d8a7d;
@@ -20,6 +22,7 @@ body {
   color: var(--gf-ink);
   -webkit-tap-highlight-color: transparent;
   text-size-adjust: 100%;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 * {
@@ -40,4 +43,97 @@ a {
 
 .safe-pt {
   padding-top: max(0.25rem, env(safe-area-inset-top));
+}
+
+html.dark {
+  color-scheme: dark;
+  color: #ffffff;
+}
+
+html.dark body {
+  background-color: #0f1419;
+  color: #ffffff;
+}
+
+html.dark .bg-white {
+  background-color: #1a2332 !important;
+}
+html.dark .bg-\[\#f5f7f8\] {
+  background-color: #0f1419 !important;
+}
+html.dark .bg-gray-100 {
+  background-color: #243044 !important;
+}
+html.dark .bg-white\/95 {
+  background-color: rgba(26, 35, 50, 0.95) !important;
+}
+html.dark .bg-white\/90 {
+  background-color: rgba(26, 35, 50, 0.9) !important;
+}
+html.dark .bg-white\/80 {
+  background-color: rgba(26, 35, 50, 0.8) !important;
+}
+
+html.dark .text-\[\#1c323a\],
+html.dark .text-\[\#110c0c\],
+html.dark .text-\[\#17252a\],
+html.dark .text-gray-800,
+html.dark .text-gray-700,
+html.dark .text-gray-600 {
+  color: #ffffff !important;
+}
+html.dark .text-gray-500,
+html.dark .text-gray-400 {
+  color: #cbd5e1 !important;
+}
+
+html.dark .border-gray-200,
+html.dark .border-gray-300,
+html.dark .border-\[\#1c323a\],
+html.dark .border-black\/5 {
+  border-color: #334155 !important;
+}
+
+html.dark input,
+html.dark select,
+html.dark textarea {
+  background-color: #0f1419;
+  color: #ffffff;
+  border-color: #334155;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748b;
+}
+
+html.dark .bg-emerald-50 {
+  background-color: #14532d !important;
+}
+html.dark .text-emerald-700 {
+  color: #86efac !important;
+}
+html.dark .bg-amber-50 {
+  background-color: #78350f !important;
+}
+html.dark .text-amber-700 {
+  color: #fcd34d !important;
+}
+html.dark .bg-\[\#3aafa9\]\/15 {
+  background-color: rgba(58, 175, 169, 0.2) !important;
+}
+html.dark .active\:bg-gray-50:active {
+  background-color: #243044 !important;
+}
+
+html.dark ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+html.dark ::-webkit-scrollbar-track {
+  background: #0f1419;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 8px;
 }
